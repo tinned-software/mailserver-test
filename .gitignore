@@ -1,0 +1,6 @@
+# ignore MACOSX related files
+.DS_Store
+._*
+
+# ignore logfiles
+*.log

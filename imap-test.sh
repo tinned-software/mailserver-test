@@ -106,13 +106,13 @@ if [ "$HELP" -eq "1" ]; then
 	echo "License GNUv3: GNU General Public License version 3 <http://opensource.org/licenses/GPL-3.0>"
 	echo 
 	echo "This script is used to test the IMAP mail-server setup. It connects to the "
-	echo "mail-server (optional with via SSL) and tries to check for emails. "
+	echo "mail-server (optional with via SSL) and tries to check for emails."
 	echo "The raw communication is afterwards shown and available in the log."
 	echo 
-	echo "Usage: `basename $0` [-hv] auth username [ssl] smtp.domain.com"
+	echo "Usage: `basename $0` [-hv] auth username imap.domain.com [ssl]"
   	echo "  -h  --help         print this usage and exit"
 	echo "  -v  --version      print version information and exit"
-	echo "      auth           Use authentication with user-name and password"
+	echo "      auth           Use authentication with username and password"
 	echo "      ssl            Connect via StartSSL to the mail server"
 	echo 
 	exit 1

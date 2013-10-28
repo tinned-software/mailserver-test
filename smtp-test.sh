@@ -126,7 +126,7 @@ if [ "$HELP" -eq "1" ]; then
 	echo "Usage: `basename $0` [-hv] [auth username] [ssl] smtp.domain.com sernder@domain.com recipient@example.com"
   	echo "  -h  --help         print this usage and exit"
 	echo "  -v  --version      print version information and exit"
-	echo "      auth           Use authentication with user-name and password"
+	echo "      auth           Use authentication with username and password"
 	echo "      ssl            Connect via StartSSL to the mail server"
 	echo 
 	exit 1

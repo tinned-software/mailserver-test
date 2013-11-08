@@ -13,6 +13,7 @@ The Mailserver-Test scripts aims to download files located in a specified direct
    * Connecting to IMAP via telnet on port 143
    * Connecting to IMAP via openssl on port 993 for SSL
    * Commands will EXAMINE and SELECT the INBOX and read the first available email
+   * RAW IMAP comminucation is saved to a logfile
    
 
 ## Download & Installation
@@ -25,7 +26,7 @@ To install the the script just download it from Github. There is no configuratio
 
 The Mailserver-Test scripts are designed to connect to the mail-server to verify its configuration. These scripts to not aim to be full featured email clients. 
 
-The **smtp-test** script can be used to verify that emails cannot be sent without SMTP authentication to avoid an open relay. It can be used as well to verify the correct setup of StartTLS on the SMTP server. It can be as well used to test the local delivery of incoming emails to the SMTP by defining the recipient email to an email address localy handled by the mail server. It can be a handy little script to verify the correct setup without typing the SMTP commands manually into the telnet session.
+The **smtp-test** script can be used to verify that emails cannot be sent without SMTP authentication to avoid an open relay. It can be used as well to verify the correct setup of StartTLS on the SMTP server. Incoming emails to the SMTP server can be simulated as well by defining the recipient email to an email address localy handled by the mail server. It can be a handy little script to verify the correct setup without typing the SMTP commands manually into the telnet session.
 
 The **imap-test** script can be used to check the configuration of teh IMAP server and its authentication settings. To make use of the full functionality of this script it is suggested that there is an email in the INBOX as the script will fetch the first email from the IMAP server. It can be a handy little script to verify the correct setup without typing the IMAP commands manually into the telnet session.
 

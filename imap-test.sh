@@ -2,7 +2,7 @@
 #
 # @author Gerhard Steinbeis (info [at] tinned-software [dot] net)
 # @copyright Copyright (c) 2013
-version=0.1.0
+version=0.1.1
 # @license http://opensource.org/licenses/GPL-3.0 GNU General Public License, version 3
 # @package email
 #
@@ -47,7 +47,7 @@ while [ $# -gt 0 ]; do
 		auth)
 			AUTH_ON=$1
 			AUTH_USER=$2
-			echo -n "Enter SMTP-Password: "
+			echo -n "Enter IMAP-Password: "
 			read AUTH_PASS
 			shift 2
 			;;
@@ -60,8 +60,8 @@ while [ $# -gt 0 ]; do
 
 		# Unnamed parameter        
 		*)
-			if [[ "$SMTP_SERVER" == "" ]]; then
-				SMTP_SERVER=$1
+			if [[ "$IMAP_SERVER" == "" ]]; then
+				IMAP_SERVER=$1
 			fi
 			shift
 			;;
@@ -69,7 +69,7 @@ while [ $# -gt 0 ]; do
 done
 
 # Parameter check
-if [[ "$SMTP_SERVER" == ""  ]]; then
+if [[ "$IMAP_SERVER" == ""  ]]; then
 	HELP=1
 fi
 
@@ -78,7 +78,7 @@ if [[ "$AUTH_ON" == "no-auth"  ]]; then
 	HELP=1
 fi
 
-echo "IMAP-Server: $SMTP_SERVER"
+echo "IMAP-Server: $IMAP_SERVER"
 echo "Connection: $CONN_TYPE"
 if [[ "$AUTH_ON" == "auth" ]]; then
 	echo "    Auth: YES"
@@ -160,9 +160,9 @@ echo "a$CC LOGOUT"
 
 ) | 
 if [[ "$CONN_TYPE" == "ssl" ]]; then
-	openssl s_client -connect $SMTP_SERVER:993 >>transaction$LOG_EXT.log 2>&1
+	openssl s_client -connect $IMAP_SERVER:993 >>transaction$LOG_EXT.log 2>&1
 else
-	telnet $SMTP_SERVER 143 >>transaction$LOG_EXT.log 2>&1
+	telnet $IMAP_SERVER 143 >>transaction$LOG_EXT.log 2>&1
 fi
 
 
@@ -173,9 +173,9 @@ echo
 TRANSACTION=`cat transaction$LOG_EXT.log | sed -E "/$CM /! s/^(.*)$/$SM &/"`
 echo -n >transaction$LOG_EXT.log
 if [[ "$CONN_TYPE" == "ssl" ]]; then
-	echo "openssl s_client -connect $SMTP_SERVER:993" >>transaction$LOG_EXT.log
+	echo "openssl s_client -connect $IMAP_SERVER:993" >>transaction$LOG_EXT.log
 else
-	echo "telnet $SMTP_SERVER 143" >>transaction$LOG_EXT.log
+	echo "telnet $IMAP_SERVER 143" >>transaction$LOG_EXT.log
 fi
 echo "$TRANSACTION" >>transaction$LOG_EXT.log
 cat transaction$LOG_EXT.log

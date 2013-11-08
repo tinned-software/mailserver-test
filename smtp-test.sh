@@ -9,7 +9,7 @@ version=0.1.2
 
 
 # Configuration for the script
-WAIT_TIME_LONG=3.5
+WAIT_TIME_LONG=2.5
 WAIT_TIME=0.5
 
 # How to mark the client and server content

@@ -1,4 +1,4 @@
-# Mailserver-Test
+## Mailserver-Test
 
 Mailserver-Test is a collection of shell scripts created to test a mailserver's setup. It includes a script to test an SMTP server and a script to test an IMAP server.
 
@@ -16,13 +16,13 @@ The Mailserver-Test scripts aim to download files located in a specified directo
    * RAW IMAP comminucation is saved to a logfile
    
 
-## Download & Installation
+### Download & Installation
 
-[Download Download mailserver-test from Github](https://github.com/tinned-software/mailserver-test)
+![image](http://www.tinned-software.net/images/icons/download.png) **[Download Download mailserver-test from Github](https://github.com/tinned-software/mailserver-test)**
 
 To install the the script just download it from Github. There is no configuration file as all configuration is done via commandline.
 
-## Description
+### Description
 
 The Mailserver-Test scripts are designed to connect to the mail-server to verify its configuration. These scripts do not aim to be full-featured email clients. 
 

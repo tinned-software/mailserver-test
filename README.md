@@ -2,7 +2,7 @@
 
 Mailserver-Test is a collection of shell scripts created to test a mailserver's setup. It includes a script to test an SMTP server and a script to test an IMAP server.
 
-The Mailserver-Test scripts aim to download files located in a specified directory. The list of functionality includes the following:
+The Mailserver-Test scripts will connect to the mail-server, send their commands and get the response. The answers can then be compared to what you would expect based on your server configuration. The list of functions that can be checked includes:
 
 *  SMTP
    * Connecting to SMTP via telnet on port 25

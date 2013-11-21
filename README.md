@@ -18,7 +18,7 @@ The Mailserver-Test scripts will connect to the mail-server, send their commands
 
 ### Download & Installation
 
-![image](http://www.tinned-software.net/images/icons/download.png) **[Download Download mailserver-test from Github](https://github.com/tinned-software/mailserver-test)**
+![image](http://www.tinned-software.net/images/icons/download.png) **[Download mailserver-test from Github](https://github.com/tinned-software/mailserver-test)**
 
 To install the the script just download it from Github. There is no configuration file as all configuration is done via commandline.
 

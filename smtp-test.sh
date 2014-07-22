@@ -2,15 +2,15 @@
 #
 # @author Gerhard Steinbeis (info [at] tinned-software [dot] net)
 # @copyright Copyright (c) 2013
-version=0.1.2
+version=0.2.0
 # @license http://opensource.org/licenses/GPL-3.0 GNU General Public License, version 3
 # @package email
 #
 
 
 # Configuration for the script
-WAIT_TIME_LONG=2.5
-WAIT_TIME=0.5
+WAIT_TIME_LONG=3.5
+WAIT_TIME=1.5
 
 # How to mark the client and server content
 CM="C:"
@@ -23,6 +23,8 @@ SENDER_EMAIL=""
 RECIPIENT_EMAIL=""
 CONN_TYPE="non-ssl"
 
+PORT="25"
+SSL_OPTIONS=""
 
 #
 # Parse all parameters
@@ -58,6 +60,18 @@ while [ $# -gt 0 ]; do
 		ssl)
 			CONN_TYPE="ssl"
 			shift
+			;;
+
+		# specific parameters
+		--port)
+			PORT=$2
+			shift 2
+			;;
+
+		# specific parameters
+		--ssl-options)
+			SSL_OPTIONS=$2
+			shift 2
 			;;
 
 		# Unnamed parameter        
@@ -123,9 +137,11 @@ if [ "$HELP" -eq "1" ]; then
 	echo "the specified sender and recipient. The raw communication is "
 	echo "afterwards shown and available in the log."
 	echo 
-	echo "Usage: `basename $0` [-hv] [auth username] [ssl] smtp.domain.com sernder@domain.com recipient@example.com"
+	echo "Usage: `basename $0` [-hv] [--port 25] [auth username] [ssl] [--ssl-options \"-ssl2 -cipher aNULL\"] smtp.domain.com sernder@domain.com recipient@example.com"
   	echo "  -h  --help         print this usage and exit"
 	echo "  -v  --version      print version information and exit"
+	echo "      --port         Specify the port used to connect other then the default port 25"
+	echo "      --ssl-options  Specify anny additional ssl options for the test, like ciphers"
 	echo "      auth           Use authentication with username and password"
 	echo "      ssl            Connect via StartSSL to the mail server"
 	echo 
@@ -219,7 +235,7 @@ echo "$CM QUIT" >>transaction$LOG_EXT.log &&
 echo "QUIT" 
 ) | 
 if [[ "$CONN_TYPE" == "ssl" ]]; then
-	openssl s_client -starttls smtp -crlf -connect $SMTP_SERVER:25 >>transaction$LOG_EXT.log 2>&1
+	openssl s_client -starttls smtp -crlf -connect $SMTP_SERVER:$PORT $SSL_OPTIONS >>transaction$LOG_EXT.log 2>&1
 else
 	telnet $SMTP_SERVER 25 >>transaction$LOG_EXT.log 2>&1
 fi
@@ -232,9 +248,9 @@ echo
 TRANSACTION=`cat transaction$LOG_EXT.log | sed -E "/$CM /! s/^(.*)$/$SM &/"`
 echo -n >transaction$LOG_EXT.log
 if [[ "$CONN_TYPE" == "ssl" ]]; then
-	echo "openssl s_client -starttls smtp -crlf -connect $SMTP_SERVER:25" >>transaction$LOG_EXT.log
+	echo "openssl s_client -starttls smtp -crlf -connect $SMTP_SERVER:$PORT $SSL_OPTIONS" >>transaction$LOG_EXT.log
 else
-	echo "telnet $SMTP_SERVER 25" >>transaction$LOG_EXT.log
+	echo "telnet $SMTP_SERVER $PORT" >>transaction$LOG_EXT.log
 fi
 echo "$TRANSACTION" >>transaction$LOG_EXT.log
 cat transaction$LOG_EXT.log

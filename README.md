@@ -5,8 +5,9 @@ Mailserver-Test is a collection of shell scripts created to test a mailserver's 
 The Mailserver-Test scripts will connect to the mail-server, send their commands and get the response. The answers can then be compared to what you would expect based on your server configuration. The list of functions that can be checked includes:
 
 *  SMTP
-   * Connecting to SMTP via telnet on port 25
-   * Connecting to SMTP via openssl on port 25 for StartTLS
+   * Connecting to SMTP via telnet on port 25 or the specified port number
+   * Connecting to SMTP via openssl on port 25 or the specified port number for StartTLS
+   * Connecting to SMTP via openssl using the specified ssl options
    * Send email with SMTP Authentication, as well as without
    * RAW SMTP communucation is saved to a logfile
 * IMAP
